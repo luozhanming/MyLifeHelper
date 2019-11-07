@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.kotlin_stdlib
+    api deps.appcompat
+    api deps.core_ktx
+    api deps.cardview
+    api deps.coordinatorlayout
+    api deps.constrainlayout
+    api deps.multidex
+    api deps.recyclerview
+    api deps.lifecycle_extensions
+    api deps.navigation_fragment
+    api deps.navigation_ui
+    api deps.paging_runtime
+    api deps.room_runtime
+    api deps.retrofit
+    api deps.retrofit_converter_gson
+    api deps.retrofit_adapter_rxjava2
+    api deps.okhttp3
+    api deps.rxandroid
+    api deps.rxjava
+    api deps.router
+    api deps.glide
+    api deps.dagger
+    api deps.dagger_android
+    api deps.dagger_support_android
+    testApi 'junit:junit:4.12'
+    kapt deps.dagger_compiler
+    kapt deps.dagger_android_compiler
+    androidTestApi 'com.android.support.test:runner:1.0.2'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

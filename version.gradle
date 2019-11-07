@@ -1,0 +1,71 @@
+ext {
+
+
+    isGithubApp = false
+
+    complie_sdk_version = 28
+    min_sdk_version = 15
+    target_sdk_version = 28
+
+
+    version = [
+            kotlinVersion = '1.3.21',
+            retrofitVersion = '2.6.2',
+            okhttpVersion = '4.2.1',
+            glideVersion = '4.10.0',
+            lifecycleVersion = '2.1.0',
+            navVersion = '2.1.0',
+            pagingVersion = '2.1.0',
+            roomVersion = "2.2.0",
+            daggerVersion = "2.23.2"
+    ]
+
+    deps = [
+            //kotlin
+            kotlin_stdlib           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            //androidx
+            appcompat               : "androidx.appcompat:appcompat:1.1.0",
+            core_ktx                : "androidx.core:core-ktx:1.2.0-beta01",
+            cardview                : "androidx.cardview:cardview:1.0.0",
+            coordinatorlayout       : "androidx.coordinatorlayout:coordinatorlayout:1.0.0",
+            constrainlayout         : "androidx.constraintlayout:constraintlayout:1.1.2",
+            multidex                : "androidx.multidex:multidex:2.0.0",
+            recyclerview            : "androidx.recyclerview:recyclerview:1.0.0",
+
+            //Jetpack
+            //lifecycle
+            lifecycle_extensions    : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycle_compiler      : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
+            //Navigation
+            navigation_fragment     : "androidx.navigation:navigation-fragment:$navVersion",
+            navigation_ui           : "androidx.navigation:navigation-ui:$navVersion",
+            //Paging
+            paging_runtime          : "androidx.paging:paging-runtime:$pagingVersion",
+            //Room
+            room_runtime            : "androidx.room:room-runtime:$roomVersion",
+
+            //network
+            retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofit_converter_gson : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            retrofit_adapter_rxjava2: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            okhttp3                 : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            rxandroid               : "io.reactivex.rxjava2:rxandroid:2.1.0",
+            rxjava                  : "io.reactivex.rxjava2:rxjava:2.1.11",
+
+            //路由
+            "router"                : "com.alibaba:arouter-api:1.4.1",
+            "router-compiler"       : "com.alibaba:arouter-compiler:1.2.2",
+
+            //图片加载库
+            glide                   : "com.github.bumptech.glide:glide:$glideVersion",
+            glide_compiler          : "com.github.bumptech.glide:compiler:$glideVersion",
+            //依赖注入
+            dagger                  : "com.google.dagger:dagger:$daggerVersion",
+            dagger_compiler         : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger_android          : "com.google.dagger:dagger-android:$daggerVersion",
+            dagger_support_android  : "com.google.dagger:dagger-android-support:$daggerVersion",
+            dagger_android_compiler : "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+
+    ]
+}
