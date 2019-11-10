@@ -6,7 +6,7 @@ import cn.luozhanming.library.di.DaggerCommonComponent
 
 class LifeHelperApp : Application() {
 
-    lateinit var mCommonComponent: CommonComponent
+    private lateinit var mCommonComponent: CommonComponent
 
     override fun onCreate() {
         super.onCreate()

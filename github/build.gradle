@@ -22,15 +22,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "CLIENT_ID", properties.getProperty("CLIENT_ID")
+        buildConfigField "String", "CLIENT_SECRET", properties.getProperty("CLIENT_SECRET")
+        buildConfigField "String", "ACCESS_TOKEN", properties.getProperty("ACCESS_TOKEN")
+
+
     }
 
-    sourceSets{
-        main{
-            if(isGithubApp){
+    sourceSets {
+        main {
+            if (isGithubApp) {
                 manifest.srcFile 'src/main/runalone/AndroidManifest.xml'
-                java.srcDirs = ['src/main/java','src/main/runalone/java']
-                res.srcDirs = ['src/main/res','src/main/runalone/res']
-            }else{
+                java.srcDirs = ['src/main/java', 'src/main/runalone/java']
+                res.srcDirs = ['src/main/res', 'src/main/runalone/res']
+            } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }
@@ -43,9 +50,10 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
+
 
 }
 
