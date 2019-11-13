@@ -49,6 +49,7 @@ ext {
             retrofit_converter_gson : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             retrofit_adapter_rxjava2: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             okhttp3                 : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            okhttp3_logging         : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             rxandroid               : "io.reactivex.rxjava2:rxandroid:2.1.0",
             rxjava                  : "io.reactivex.rxjava2:rxjava:2.1.11",
 
@@ -64,8 +65,9 @@ ext {
             dagger_compiler         : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger_android          : "com.google.dagger:dagger-android:$daggerVersion",
             dagger_support_android  : "com.google.dagger:dagger-android-support:$daggerVersion",
-            dagger_android_compiler : "com.google.dagger:dagger-android-processor:$daggerVersion"
-
+            dagger_android_compiler : "com.google.dagger:dagger-android-processor:$daggerVersion",
+            //Log
+            logger                  : "com.orhanobut:logger:2.2.0"
 
     ]
 }
