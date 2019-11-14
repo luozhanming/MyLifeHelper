@@ -15,7 +15,6 @@ class LifeHelperApp : Application() {
     override fun onCreate() {
         super.onCreate()
         mCommonComponent = DaggerCommonComponent.builder().application(this).build()
-        initScreenCompat()
         LoggerUtil.init()
     }
 
@@ -30,6 +29,7 @@ class LifeHelperApp : Application() {
             targetDensity * (resources.displayMetrics.scaledDensity / resources.displayMetrics.density)
         resources.displayMetrics.density = targetDensity
         resources.displayMetrics.scaledDensity = targetScaleDensity
+        resources.displayMetrics.densityDpi = (targetDensity*160).toInt()
         registerComponentCallbacks(object : ComponentCallbacks {
             override fun onLowMemory() {
             }

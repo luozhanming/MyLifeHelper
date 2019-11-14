@@ -24,7 +24,8 @@ android {
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        buildConfigField "int", "ACCESS_TOKEN", properties.getProperty("ACCESS_TOKEN")
+        String token = properties.getProperty("ACCESS_TOKEN")
+        buildConfigField "String", "ACCESS_TOKEN", "\"$token\""
 
 
     }

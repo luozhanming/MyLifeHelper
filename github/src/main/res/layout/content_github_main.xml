@@ -7,8 +7,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ImageView
-        android:layout_width="360dp"
-        android:layout_height="360dp"
+        android:layout_width="358dp"
+        android:layout_height="358dp"
         android:background="#545454"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
