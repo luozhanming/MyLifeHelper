@@ -25,7 +25,7 @@ class LifeHelperApp : Application() {
         //以宽为360dp适配
         val screenWidth = resources.displayMetrics.widthPixels
         val ratio = AppConfig.DESIGN_WIDTH_BASE.toFloat() / screenWidth
-        val targetDensity = ratio / resources.displayMetrics.density
+        val targetDensity = ratio * resources.displayMetrics.density
         val targetScaleDensity =
             targetDensity * (resources.displayMetrics.scaledDensity / resources.displayMetrics.density)
         resources.displayMetrics.density = targetDensity

@@ -27,6 +27,4 @@ interface CommonComponent {
 
     fun inject(application:LifeHelperApp)
 
-    @Named("dsf")
-    fun getString():String
 }

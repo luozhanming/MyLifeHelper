@@ -1,5 +1,6 @@
 package cn.luozhanming.library.base
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cn.luozhanming.library.di.Injectable
@@ -8,12 +9,14 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, Injectable {
+abstract class BaseActivity : AppCompatActivity(){
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    abstract fun initView()
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
 
 }
