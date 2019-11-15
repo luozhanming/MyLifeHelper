@@ -7,6 +7,4 @@ import javax.inject.Inject
 
 class UserFragment : Fragment(), Injectable {
 
-    @Inject
-    lateinit var str: AppExecutor
 }

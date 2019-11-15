@@ -14,6 +14,7 @@ import cn.luozhanming.github.viewmodel.GithubViewModelFactory
 import cn.luozhanming.github.viewmodel.TestViewModel
 import cn.luozhanming.library.LifeHelperApp
 import cn.luozhanming.library.base.BaseActivity
+import cn.luozhanming.library.common.AppExecutor
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.di.Injectable
 import dagger.android.AndroidInjector
@@ -34,14 +35,12 @@ class GithubMainActivity : BaseActivity(), HasSupportFragmentInjector {
 
     private var binding: ActivityMainBinding by autoCleared()
 
-    private var mViewModel: TestViewModel by autoCleared()
-
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_github_main)
         //注入
         DaggerGithubComponent.builder()
             .commonComponent((application as LifeHelperApp).getCommonComponent()).build()
@@ -58,13 +57,10 @@ class GithubMainActivity : BaseActivity(), HasSupportFragmentInjector {
                 }
             }
         }, true)
-        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(TestViewModel::class.java)
 
     }
 
     override fun initView() {
-        //Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+
     }
 }

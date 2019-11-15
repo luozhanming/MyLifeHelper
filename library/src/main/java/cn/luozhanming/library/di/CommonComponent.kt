@@ -1,13 +1,10 @@
 package cn.luozhanming.library.di
 
-import android.app.Activity
 import android.app.Application
-import androidx.fragment.app.Fragment
 import cn.luozhanming.library.LifeHelperApp
+import cn.luozhanming.library.common.AppExecutor
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -25,6 +22,9 @@ interface CommonComponent {
         fun build(): CommonComponent
     }
 
-    fun inject(application:LifeHelperApp)
+    fun inject(application: LifeHelperApp)
+
+    /*由于是依赖的组件，所以提供的依赖必须提供接口返回*/
+    fun appExecutors(): AppExecutor
 
 }
