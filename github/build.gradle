@@ -25,7 +25,11 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         String token = properties.getProperty("ACCESS_TOKEN")
+        String clientId = properties.getProperty("CLIENT_ID")
+        String clientSecret = properties.getProperty("CLIENT_SECRET")
         buildConfigField "String", "ACCESS_TOKEN", "\"$token\""
+        buildConfigField "String","CLIENT_ID","\"$clientId\""
+        buildConfigField "String","CLIENT_SECRET","\"$clientSecret\""
 
 
     }

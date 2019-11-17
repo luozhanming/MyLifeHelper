@@ -9,6 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="cn.luozhanming.github.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_github_login"></fragment>
+        tools:layout="@layout/fragment_github_login">
+    </fragment>
 
 </navigation>

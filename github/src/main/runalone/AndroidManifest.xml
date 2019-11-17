@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.luozhanming.github">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="cn.luozhanming.library.LifeHelperApp"
         android:allowBackup="true"

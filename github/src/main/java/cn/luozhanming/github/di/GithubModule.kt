@@ -1,6 +1,7 @@
 package cn.luozhanming.github.di
 
 import cn.luozhanming.github.BuildConfig
+import cn.luozhanming.github.net.GithubService
 import cn.luozhanming.library.common.AppConfig
 import dagger.Module
 import dagger.Provides
@@ -44,4 +45,8 @@ class GithubModule {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    @GithubScope
+    @Provides
+    fun provideGithubService() = provideRetrofit().create(GithubService::class.java)
 }

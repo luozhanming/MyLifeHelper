@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(),Injectable {
 
-    var mBinding: T by autoCleared()
+     var mBinding: T by autoCleared()
 
     @Inject
     lateinit var viewModelFactory: GithubViewModelFactory

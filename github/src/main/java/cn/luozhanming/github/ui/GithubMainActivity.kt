@@ -1,5 +1,6 @@
 package cn.luozhanming.github.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.widget.Toolbar
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import cn.luozhanming.github.R
+import cn.luozhanming.github.databinding.ActivityGithubMainBinding
 import cn.luozhanming.github.databinding.ActivityMainBinding
 import cn.luozhanming.github.di.DaggerGithubComponent
 import cn.luozhanming.github.viewmodel.GithubViewModelFactory
@@ -33,7 +35,7 @@ class GithubMainActivity : BaseActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var viewModelFactory: GithubViewModelFactory
 
-    private var binding: ActivityMainBinding by autoCleared()
+    private var binding: ActivityGithubMainBinding by autoCleared()
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
@@ -47,15 +49,14 @@ class GithubMainActivity : BaseActivity(), HasSupportFragmentInjector {
             .inject(this)
         supportFragmentManager.registerFragmentLifecycleCallbacks(object :
             FragmentManager.FragmentLifecycleCallbacks() {
-            override fun onFragmentCreated(
-                fm: FragmentManager,
-                f: Fragment,
-                savedInstanceState: Bundle?
-            ) {
+
+            override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
+                super.onFragmentAttached(fm, f, context)
                 if (f is Injectable) {
                     AndroidSupportInjection.inject(f)
                 }
             }
+
         }, true)
 
     }

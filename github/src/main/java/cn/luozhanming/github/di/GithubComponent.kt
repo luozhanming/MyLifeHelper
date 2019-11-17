@@ -8,7 +8,7 @@ import dagger.android.AndroidInjectionModule
 @GithubScope
 @Component(
     modules = [GithubModule::class, GithubViewModelModule::class, AndroidInjectionModule::class
-        , GithubActivityModule::class],
+        , FragmentModule::class],
     dependencies = [CommonComponent::class]
 )
 interface GithubComponent {
