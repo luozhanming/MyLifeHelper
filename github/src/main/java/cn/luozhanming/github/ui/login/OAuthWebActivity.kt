@@ -5,22 +5,40 @@ import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.*
 import android.widget.ProgressBar
 import cn.luozhanming.github.R
 import cn.luozhanming.library.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_oauth_web.*
 
+
 class OAuthWebActivity : BaseActivity() {
 
+    companion object {
+        const val EXTRA_URL = "url"
+    }
 
     private lateinit var mWebView: WebView
+
     private lateinit var mProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_oauth_web)
+        setContentView(cn.luozhanming.github.R.layout.activity_oauth_web)
         initView()
+    }
+
+    override fun onDestroy() {
+        if (mWebView != null) {
+            mWebView.clearHistory()
+            mWebView.clearCache(true)
+            (mWebView.parent as ViewGroup).removeView(mWebView)
+            mWebView.destroy()
+
+        }
+        super.onDestroy()
+
     }
 
     override fun initView() {
@@ -46,6 +64,8 @@ class OAuthWebActivity : BaseActivity() {
         }
         webView.webViewClient = getWebViewClient()
         webView.webChromeClient = getChromeClient()
+        val url = intent.getStringExtra(EXTRA_URL)
+        webView.loadUrl(url)
     }
 
     private fun getChromeClient(): WebChromeClient = object : WebChromeClient() {
@@ -60,25 +80,29 @@ class OAuthWebActivity : BaseActivity() {
     }
 
     private fun getWebViewClient(): WebViewClient = object : WebViewClient() {
-        override fun shouldOverrideUrlLoading(
-            view: WebView?,
-            request: WebResourceRequest?
-        ): Boolean {
-            view?.url?.apply {
-                if (this.contains("http://luozhanming.com")) {
+
+        override fun onLoadResource(view: WebView?, url: String?) {
+            super.onLoadResource(view, url)
+            url?.apply {
+                if (this.contains("www.baidu.com")) {
                     val code = parseCodeUrl(this)
                     if (!TextUtils.isEmpty(code)) {  //不为空的话返回code
                         val data = Intent()
-                        data.putExtra("cdoe", code)
+                        data.putExtra("code", code)
                         setResult(RESULT_OK, data)
                         finish()
                         //TODO 返回登录界面并调用获取accesstoken
                     } else {
                         //TODO 返回登录界面并提示登录失败
                     }
-                    return false
                 }
             }
+        }
+
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
             return false
         }
     }
@@ -100,4 +124,6 @@ class OAuthWebActivity : BaseActivity() {
         }
         return null
     }
+
+
 }

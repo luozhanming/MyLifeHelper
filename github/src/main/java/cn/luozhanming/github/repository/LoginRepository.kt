@@ -21,19 +21,21 @@ class LoginRepository @Inject constructor(
             field = value
         }
 
-    /**
-     * 生成登录OauthUrl用于WebView访问
-     * @param username 用户名
-     * @param password 密码
-     * */
-    fun generateLoginOAuthUrl(username: String, password: String): String {
-        val login = "$username:$password"
-        val scope =
-            "repo%20admin:repo_hook%20admin:org%20admin:public_key%20admin:org_hook%20gist" +
-                    "%20notifications%20user%20delete_repo%20write:discussion%20write:packages" +
-                    "%20read:packages%20delete:packages%20admin:gpg_key%20workflow"
-        return "https://github.com/login/oauth/authorize?client_id=${BuildConfig.CLIENT_ID}" +
-                "&login=${login}&scope=${scope}"
+    companion object {
+        /**
+         * 生成登录OauthUrl用于WebView访问
+         * @param username 用户名
+         * @param password 密码
+         * */
+        fun generateLoginOAuthUrl(username: String, password: String): String {
+            val login = "$username:$password"
+            val scope =
+                "repo%20admin:repo_hook%20admin:org%20admin:public_key%20admin:org_hook%20gist" +
+                        "%20notifications%20user%20delete_repo%20write:discussion%20write:packages" +
+                        "%20read:packages%20delete:packages%20admin:gpg_key%20workflow"
+            return "https://github.com/login/oauth/authorize?client_id=${BuildConfig.CLIENT_ID}" +
+                    "&login=${login}&scope=${scope}"
+        }
     }
 
     /**

@@ -2,6 +2,12 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable
+            name="viewmodel"
+            type="cn.luozhanming.github.viewmodel.LoginViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,6 +20,7 @@
             android:layout_margin="16dp"
             android:hint="请输入用户名"
             android:textSize="16sp"
+            android:text="@={viewmodel.username}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:hint="请输入密码"
+            android:text="@={viewmodel.password}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_username" />
