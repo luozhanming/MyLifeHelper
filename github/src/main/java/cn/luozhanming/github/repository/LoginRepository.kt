@@ -5,7 +5,7 @@ import cn.luozhanming.github.di.GithubScope
 import cn.luozhanming.github.net.GithubService
 import cn.luozhanming.github.vo.AccessToken
 import cn.luozhanming.library.common.AppExecutor
-import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -41,9 +41,10 @@ class LoginRepository @Inject constructor(
     /**
      * 获取accessToken
      * */
-    fun getAccessToken(code: String): Flowable<AccessToken> {
+    fun getAccessToken(code: String): Observable<AccessToken> {
         return api.loadAccessToken(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET, code)
-            .map {
+            .map { body ->
+                val it = body.string()
                 val split = it.split("&")
                 var token: String? = null
                 var type: String? = null
