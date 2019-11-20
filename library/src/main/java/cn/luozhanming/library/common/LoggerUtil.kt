@@ -10,7 +10,6 @@ import java.io.PrintWriter
 
 object LoggerUtil {
 
-    val LOG_PATH = "${Environment.getExternalStorageDirectory().absolutePath}/MyLifeHelper"
 
     fun init() {
         Logger.addLogAdapter(object : AndroidLogAdapter() {

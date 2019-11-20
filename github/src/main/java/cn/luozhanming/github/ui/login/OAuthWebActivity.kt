@@ -10,6 +10,7 @@ import android.webkit.*
 import android.widget.ProgressBar
 import cn.luozhanming.github.R
 import cn.luozhanming.library.base.BaseActivity
+import cn.luozhanming.library.common.LoggerUtil
 import kotlinx.android.synthetic.main.activity_oauth_web.*
 
 
@@ -25,11 +26,12 @@ class OAuthWebActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(cn.luozhanming.github.R.layout.activity_oauth_web)
+        setContentView(R.layout.activity_oauth_web)
         initView()
     }
 
     override fun onDestroy() {
+        //清楚cookie
         if (mWebView != null) {
             mWebView.clearHistory()
             mWebView.clearCache(true)
@@ -66,6 +68,7 @@ class OAuthWebActivity : BaseActivity() {
         webView.webChromeClient = getChromeClient()
         val url = intent.getStringExtra(EXTRA_URL)
         webView.loadUrl(url)
+        LoggerUtil.i("OauthWebActivity load ${url}")
     }
 
     private fun getChromeClient(): WebChromeClient = object : WebChromeClient() {

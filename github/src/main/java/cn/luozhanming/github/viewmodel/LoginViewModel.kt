@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.luozhanming.github.repository.LoginRepository
 import cn.luozhanming.github.vo.AccessToken
+import cn.luozhanming.library.common.LoggerUtil
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(val loginRepository: LoginRepository) : ViewModel() {
@@ -13,9 +14,9 @@ class LoginViewModel @Inject constructor(val loginRepository: LoginRepository) :
 
 
     fun login(code: String?) {
-        loginRepository.getAccessToken(code?:"")
+        loginRepository.getAccessToken(code ?: "")
             .subscribe({ t: AccessToken? ->
-                t.toString()
+                LoggerUtil.i(t.toString())
             }, { t ->
                 t.printStackTrace()
             })

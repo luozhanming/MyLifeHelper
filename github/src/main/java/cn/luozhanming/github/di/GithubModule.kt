@@ -25,14 +25,17 @@ class GithubModule {
         builder.connectTimeout(AppConfig.NET_TIME_OUT, TimeUnit.SECONDS)
         builder.readTimeout(AppConfig.NET_TIME_OUT, TimeUnit.SECONDS)
         builder.writeTimeout(AppConfig.NET_TIME_OUT, TimeUnit.SECONDS)
-        builder.addInterceptor(object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain): Response {
-                val request = chain.request()
-                request.newBuilder()
-                    .addHeader("Authorization", "bearer ${BuildConfig.ACCESS_TOKEN}")
-                return chain.proceed(request)
-            }
-        })
+//        builder.addInterceptor(object : Interceptor {
+//            override fun intercept(chain: Interceptor.Chain): Response {
+//                val request = chain.request()
+//                val re
+//                request.newBuilder()
+//                    .addHeader("Authorization", "bearer ${BuildConfig.ACCESS_TOKEN}")
+//                    .post(request.body)
+//                    .build()
+//                return chain.proceed(request)
+//            }
+//        })
         val logging = HttpLoggingInterceptor()
         logging.level = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY
