@@ -50,6 +50,13 @@ class OAuthWebActivity : BaseActivity() {
     }
 
     private fun initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            CookieManager.getInstance().flush()
+            CookieManager.getInstance().removeAllCookies(null)
+        }else{
+            CookieSyncManager.createInstance(this)
+            CookieManager.getInstance().removeAllCookie()
+        }
         val settings = mWebView.settings
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         settings.javaScriptEnabled = true

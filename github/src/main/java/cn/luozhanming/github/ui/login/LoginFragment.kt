@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseFragment
@@ -21,10 +23,6 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_github_login
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun initViewModel() {
         mViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
@@ -44,10 +42,26 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        initObserver()
+    }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode== REQUEST_CODE_OAUTH&&resultCode==Activity.RESULT_OK){
             mViewModel.login(data?.getStringExtra("code"))
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun initObserver() {
+        mViewModel.loginState.observe(this, Observer {
+            if(it==LoginViewModel.LOGIN_SUCCESS){  //登录成功
+                Toast.makeText(activity,"登录成功${it}",Toast.LENGTH_SHORT).show()
+            }else{   //登录失败
+                Toast.makeText(activity,"登录失败${it}",Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

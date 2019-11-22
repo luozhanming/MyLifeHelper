@@ -1,7 +1,5 @@
 package cn.luozhanming.github.net
 
-import cn.luozhanming.library.common.AppConfig
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.Field
