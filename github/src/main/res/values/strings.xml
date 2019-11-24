@@ -14,4 +14,11 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="authorize">授权</string>
+    <string name="hint_username">请输入用户名</string>
+    <string name="hint_passowrd">请输入密码</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_failed">登录失败</string>
+    <string name="login_loading">登录中...</string>
 </resources>

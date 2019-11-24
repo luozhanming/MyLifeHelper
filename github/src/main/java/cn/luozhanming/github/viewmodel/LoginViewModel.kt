@@ -18,14 +18,17 @@ class LoginViewModel @Inject constructor(val loginRepository: LoginRepository) :
     companion object {
         const val LOGIN_FAILED = 1001
         const val LOGIN_SUCCESS = 1002
+        const val LOGIN_LOADING = 1003
     }
 
     fun login(code: String?) {
         loginRepository.getAccessToken(code ?: "")
             .subscribe(
                 Consumer {
-                    if (TextUtils.isEmpty(it.token)) {
+                    if (!TextUtils.isEmpty(it.token)) {
                         loginState.postValue(LOGIN_SUCCESS)
+                    }else{
+                        loginState.postValue(LOGIN_FAILED)
                     }
                 },
                 object : RxCommonThrowable() {

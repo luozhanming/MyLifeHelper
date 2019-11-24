@@ -32,12 +32,14 @@ object LoggerUtil {
     }
 
     fun printThrowable(throwable: Throwable) {
-        val file = File("${AppConfig.APP_EXTERN_PATH}/log/${System.currentTimeMillis()}.txt")
-        if (!file.exists() && !file.mkdirs()) {
+        val file = File("${AppConfig.APP_EXTERN_PATH}/net_log/${System.currentTimeMillis()}.txt")
+        if (!file.parentFile.exists() && !file.parentFile.mkdirs()) {
             return
         }
         val writer = PrintWriter(FileWriter(file))
         throwable.printStackTrace(writer)
+        writer.flush()
+        writer.close()
     }
 
 

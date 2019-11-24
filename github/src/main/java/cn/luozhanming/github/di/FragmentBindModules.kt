@@ -1,16 +1,19 @@
 package cn.luozhanming.github.di
 
-import cn.luozhanming.github.ui.login.LoginFragment
-import cn.luozhanming.github.ui.user.UserFragment
+import cn.luozhanming.github.ui.start.LoginFragment
+import cn.luozhanming.github.ui.start.WelcomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+
+
 @Module
-abstract class FragmentModule {
+abstract class StartFragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeLoginFragment():LoginFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeUserFragment():UserFragment
+    abstract fun contributeWelcomeFragment():WelcomeFragment
+
 }

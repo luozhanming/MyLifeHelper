@@ -67,7 +67,9 @@ ext {
             dagger_support_android  : "com.google.dagger:dagger-android-support:$daggerVersion",
             dagger_android_compiler : "com.google.dagger:dagger-android-processor:$daggerVersion",
             //Log
-            logger                  : "com.orhanobut:logger:2.2.0"
+            logger                  : "com.orhanobut:logger:2.2.0",
+            //Lottie动画框架
+            lottie:"com.airbnb.android:lottie:3.2.2"
 
     ]
 }

@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 28
+    compileSdkVersion complie_sdk_version
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
         versionCode 1
         versionName "1.0"
 
@@ -52,6 +52,7 @@ dependencies {
     api deps.dagger
     api deps.dagger_android
     api deps.dagger_support_android
+    api deps.lottie
     implementation deps.logger
     testApi 'junit:junit:4.12'
     kapt deps.dagger_compiler

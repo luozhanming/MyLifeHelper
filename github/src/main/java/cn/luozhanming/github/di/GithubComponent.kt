@@ -1,6 +1,6 @@
 package cn.luozhanming.github.di
 
-import cn.luozhanming.github.ui.GithubMainActivity
+import cn.luozhanming.github.ui.start.GithubStartActivity
 import cn.luozhanming.library.di.CommonComponent
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -8,7 +8,7 @@ import dagger.android.AndroidInjectionModule
 @GithubScope
 @Component(
     modules = [GithubModule::class, GithubViewModelModule::class, AndroidInjectionModule::class
-        , FragmentModule::class],
+        , StartFragmentModule::class],
     dependencies = [CommonComponent::class]
 )
 interface GithubComponent {
@@ -21,6 +21,6 @@ interface GithubComponent {
         fun build(): GithubComponent
     }
 
-    fun inject(activity: GithubMainActivity)
+    fun inject(activity: GithubStartActivity)
 
 }

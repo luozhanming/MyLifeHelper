@@ -27,7 +27,7 @@ class LoginRepository @Inject constructor(
          * @param username 用户名
          * @param password 密码
          * */
-        fun generateLoginOAuthUrl(username: String, password: String): String {
+        fun generateLoginOAuthUrl(username: String?, password: String?): String {
             val login = "$username:$password"
             val scope =
                 "repo%20admin:repo_hook%20admin:org%20admin:public_key%20admin:org_hook%20gist" +

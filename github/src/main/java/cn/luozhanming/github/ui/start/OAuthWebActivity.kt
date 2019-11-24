@@ -1,4 +1,4 @@
-package cn.luozhanming.github.ui.login
+package cn.luozhanming.github.ui.start
 
 import android.content.Intent
 import android.os.Build
@@ -31,7 +31,6 @@ class OAuthWebActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        //清楚cookie
         if (mWebView != null) {
             mWebView.clearHistory()
             mWebView.clearCache(true)

@@ -8,6 +8,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import cn.luozhanming.github.viewmodel.GithubViewModelFactory
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.di.Injectable
@@ -41,6 +43,20 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(),Injectable {
         super.onCreate(savedInstanceState)
         initViewModel()
     }
+
+    /**
+     * Navigation 的页面跳转
+     */
+    fun navigationPopUpTo(view: View, args: Bundle?, actionId: Int, finishStack: Boolean) {
+        val controller = Navigation.findNavController(view)
+        controller.navigate(actionId,
+            args, NavOptions.Builder().setPopUpTo(controller.graph.id, true).build())
+        if (finishStack) {
+            activity?.finish()
+        }
+    }
+
+
 
 
 }

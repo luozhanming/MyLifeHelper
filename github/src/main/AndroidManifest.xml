@@ -3,7 +3,7 @@
         package="cn.luozhanming.github">
 
     <application>
-        <activity android:name=".ui.GithubMainActivity">
+        <activity android:name=".ui.start.GithubStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

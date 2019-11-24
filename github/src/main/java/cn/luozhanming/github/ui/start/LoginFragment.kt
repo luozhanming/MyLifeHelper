@@ -1,4 +1,4 @@
-package cn.luozhanming.github.ui.login
+package cn.luozhanming.github.ui.start
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,7 @@ import cn.luozhanming.github.databinding.FragmentGithubLoginBinding
 import cn.luozhanming.github.repository.LoginRepository
 import cn.luozhanming.github.viewmodel.LoginViewModel
 import cn.luozhanming.library.common.autoCleared
+import cn.luozhanming.library.ext.getBaseActivity
 
 class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
     companion object {
@@ -34,22 +35,23 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
         mBinding.btnLogin.setOnClickListener {
             val intent = Intent(activity, OAuthWebActivity::class.java)
             val url = LoginRepository.generateLoginOAuthUrl(
-                mBinding.etUsername.text.toString(),
-                mBinding.etPassword.text.toString()
+                mViewModel.username.value,
+                mViewModel.password.value
             )
             intent.putExtra(OAuthWebActivity.EXTRA_URL, url)
             startActivityForResult(intent, REQUEST_CODE_OAUTH)
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initObserver()
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode== REQUEST_CODE_OAUTH&&resultCode==Activity.RESULT_OK){
+        if (requestCode == REQUEST_CODE_OAUTH && resultCode == Activity.RESULT_OK) {
+            mViewModel.loginState.value = LoginViewModel.LOGIN_LOADING
             mViewModel.login(data?.getStringExtra("code"))
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -57,10 +59,26 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
 
     private fun initObserver() {
         mViewModel.loginState.observe(this, Observer {
-            if(it==LoginViewModel.LOGIN_SUCCESS){  //登录成功
-                Toast.makeText(activity,"登录成功${it}",Toast.LENGTH_SHORT).show()
-            }else{   //登录失败
-                Toast.makeText(activity,"登录失败${it}",Toast.LENGTH_SHORT).show()
+            when (it) {
+                LoginViewModel.LOGIN_SUCCESS -> {
+                    Toast.makeText(
+                        activity,
+                        "${resources.getString(R.string.login_success)}${it}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    getBaseActivity()?.hideLoadingDialog()
+                }
+                LoginViewModel.LOGIN_LOADING -> {
+                    getBaseActivity()?.showLoadingDialog(resources.getString(R.string.login_loading))
+                }
+                LoginViewModel.LOGIN_FAILED -> {
+                    Toast.makeText(
+                        activity,
+                        "${resources.getString(R.string.login_failed)}${it}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    getBaseActivity()?.hideLoadingDialog()
+                }
             }
         })
     }
