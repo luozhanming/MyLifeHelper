@@ -13,14 +13,26 @@
         <action
                 android:id="@+id/toLoginFragment"
                 app:destination="@id/loginFragment" />
+        <action
+                android:id="@+id/action_welcomeFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/loginFragment"
             android:name="cn.luozhanming.github.ui.start.LoginFragment"
             android:label="fragment_login"
-            tools:layout="@layout/fragment_github_login" >
+            tools:layout="@layout/fragment_github_login">
 
+        <action
+                android:id="@+id/action_loginFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
+    <activity
+            android:id="@+id/mainFragment"
+            android:name="cn.luozhanming.github.ui.main.MainGithubActivity"
+            android:label="activity_main"  tools:layout="@layout/activity_github_main">
+
+    </activity>
 
 </navigation>
