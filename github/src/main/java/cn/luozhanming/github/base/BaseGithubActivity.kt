@@ -1,25 +1,20 @@
 package cn.luozhanming.github.base
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation
 import cn.luozhanming.github.di.DaggerGithubComponent
 import cn.luozhanming.github.viewmodel.GithubViewModelFactory
 import cn.luozhanming.library.LifeHelperApp
 import cn.luozhanming.library.base.BaseActivity
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.di.Injectable
-import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject

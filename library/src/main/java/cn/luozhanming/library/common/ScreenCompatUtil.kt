@@ -5,11 +5,17 @@ import android.content.ComponentCallbacks
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * 今日头条屏幕适配工具类
+ * */
 object ScreenCompatUtil {
 
     private var sNonCompatDensity: Float = 0f
     private var sNonCompatScaledDensity = 0f;
 
+    /**
+     * 以宽为基准
+     * */
     fun initScreenCompatBaseWidth(activity: AppCompatActivity, app: Application) {
         val appDisplayMetrics = app.resources.displayMetrics
         if (sNonCompatDensity == 0f) {
@@ -40,6 +46,9 @@ object ScreenCompatUtil {
         activityMetrics.densityDpi = targetDensityDpi
     }
 
+    /**
+     * 以高为基准
+     * */
     fun initScreenCompatBaseHeight(activity: AppCompatActivity, app: Application) {
         val appDisplayMetrics = app.resources.displayMetrics
         if (sNonCompatDensity == 0f) {

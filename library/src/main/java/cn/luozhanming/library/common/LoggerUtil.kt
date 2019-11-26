@@ -1,6 +1,5 @@
 package cn.luozhanming.library.common
 
-import android.os.Environment
 import cn.luozhanming.library.BuildConfig
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -8,6 +7,9 @@ import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
 
+/**
+ * Log工具类
+ * */
 object LoggerUtil {
 
 

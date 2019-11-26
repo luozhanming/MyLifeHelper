@@ -15,7 +15,5 @@
                 android:tag="navHost"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/main_navigation" />
-
-
     </FrameLayout>
 </layout>
