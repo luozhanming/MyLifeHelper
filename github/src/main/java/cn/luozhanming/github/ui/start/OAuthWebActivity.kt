@@ -52,7 +52,7 @@ class OAuthWebActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             CookieManager.getInstance().flush()
             CookieManager.getInstance().removeAllCookies(null)
-        }else{
+        } else {
             CookieSyncManager.createInstance(this)
             CookieManager.getInstance().removeAllCookie()
         }
@@ -97,7 +97,7 @@ class OAuthWebActivity : BaseActivity() {
                     val code = parseCodeUrl(this)
                     if (!TextUtils.isEmpty(code)) {  //不为空的话返回code
                         val data = Intent()
-                        data.putExtra("code", code)
+                        data.putExtra(LoginFragment.EXTRA_CODE, code)
                         setResult(RESULT_OK, data)
                         finish()
                         //TODO 返回登录界面并调用获取accesstoken

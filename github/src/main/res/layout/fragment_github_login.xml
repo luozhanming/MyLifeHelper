@@ -81,52 +81,37 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/hint_username"
+                                android:textColorHint="@color/edittext_hint_color"
                                 android:text="@={viewmodel.username}"
                                 android:textSize="18dp" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+
                 </LinearLayout>
 
-                <LinearLayout
-                        android:layout_width="match_parent"
+                <CheckBox
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/margin_horizontal"
                         android:layout_marginTop="@dimen/margin_vertical"
-                        android:layout_marginRight="@dimen/margin_horizontal"
-                        android:orientation="horizontal">
-
-                    <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_keyboard" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_password"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:hint="@string/hint_passowrd"
-                                android:text="@={viewmodel.password}"
-                                android:textSize="18dp" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
+                        android:layout_gravity="left"
+                        android:textSize="18sp"
+                        android:checked="@={viewmodel.autoLogin}"
+                        android:textColor="@color/normal_text_color"
+                        android:text="@string/auto_login"/>
 
 
                 <Button
                         android:id="@+id/btn_login"
                         android:layout_width="match_parent"
                         android:layout_height="46dp"
+                        android:textSize="20sp"
                         android:layout_marginLeft="@dimen/margin_horizontal"
-                        android:layout_marginTop="56dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="@dimen/margin_horizontal"
                         android:layout_marginBottom="@dimen/margin_vertical"
                         android:background="@drawable/bg_github_confirm_button"
                         android:text="@string/authorize"
-
                         android:textColor="@color/white" />
 
             </LinearLayout>

@@ -1,5 +1,6 @@
 package cn.luozhanming.github.di
 
+import cn.luozhanming.github.ui.main.GithubMainActivity
 import cn.luozhanming.github.ui.start.GithubStartActivity
 import cn.luozhanming.library.di.CommonComponent
 import dagger.Component
@@ -22,5 +23,7 @@ interface GithubComponent {
     }
 
     fun inject(activity: GithubStartActivity)
+
+    fun inject(activity: GithubMainActivity)
 
 }

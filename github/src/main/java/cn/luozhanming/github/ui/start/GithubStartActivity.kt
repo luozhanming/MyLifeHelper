@@ -2,13 +2,12 @@ package cn.luozhanming.github.ui.start
 
 import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseGithubActivity
-import cn.luozhanming.github.databinding.ActivityGithubMainBinding
+import cn.luozhanming.github.databinding.ActivityGithubStartBinding
 
-class GithubStartActivity : BaseGithubActivity<ActivityGithubMainBinding>()
-{
+class GithubStartActivity : BaseGithubActivity<ActivityGithubStartBinding>() {
 
 
-    override fun getLayoutId(): Int = R.layout.activity_github_main
+    override fun getLayoutId(): Int = R.layout.activity_github_start
 
     override fun initViewModel() {
     }
@@ -19,7 +18,6 @@ class GithubStartActivity : BaseGithubActivity<ActivityGithubMainBinding>()
     override fun daggerInject() {
         getGithubComponent().inject(this)
     }
-
 
 
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseFragment
 import cn.luozhanming.github.databinding.FragmentGithubLoginBinding
@@ -18,6 +19,7 @@ import cn.luozhanming.library.ext.getBaseActivity
 class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
     companion object {
         const val REQUEST_CODE_OAUTH = 1001
+        const val EXTRA_CODE = "code"
     }
 
     private var mViewModel: LoginViewModel by autoCleared()
@@ -51,8 +53,7 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_OAUTH && resultCode == Activity.RESULT_OK) {
-            mViewModel.loginState.value = LoginViewModel.LOGIN_LOADING
-            mViewModel.login(data?.getStringExtra("code"))
+            mViewModel.login(data?.getStringExtra(EXTRA_CODE))
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

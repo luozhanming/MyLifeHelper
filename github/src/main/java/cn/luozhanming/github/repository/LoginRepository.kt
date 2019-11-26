@@ -1,5 +1,6 @@
 package cn.luozhanming.github.repository
 
+import android.util.Base64
 import cn.luozhanming.github.BuildConfig
 import cn.luozhanming.github.di.GithubScope
 import cn.luozhanming.github.net.GithubService
@@ -28,7 +29,7 @@ class LoginRepository @Inject constructor(
          * @param password 密码
          * */
         fun generateLoginOAuthUrl(username: String?, password: String?): String {
-            val login = "$username:$password"
+            val login = username
             val scope =
                 "repo%20admin:repo_hook%20admin:org%20admin:public_key%20admin:org_hook%20gist" +
                         "%20notifications%20user%20delete_repo%20write:discussion%20write:packages" +
