@@ -53,6 +53,7 @@ dependencies {
     api deps.dagger_android
     api deps.dagger_support_android
     api deps.lottie
+    api deps.utilcode
     implementation deps.logger
     testApi 'junit:junit:4.12'
     kapt deps.dagger_compiler

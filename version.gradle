@@ -69,7 +69,9 @@ ext {
             //Log
             logger                  : "com.orhanobut:logger:2.2.0",
             //Lottie动画框架
-            lottie:"com.airbnb.android:lottie:3.2.2"
+            lottie                  : "com.airbnb.android:lottie:3.2.2",
+            //utilCode
+            utilcode                : "com.blankj:utilcode:1.25.9"
 
     ]
 }

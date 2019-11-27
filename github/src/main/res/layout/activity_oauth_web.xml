@@ -6,6 +6,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+        <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="@dimen/titlebar_height">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_text_color"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/title_text_size"
+                android:text="@string/activity_title_oauth_page"/>
+        </FrameLayout>
+
         <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="match_parent"

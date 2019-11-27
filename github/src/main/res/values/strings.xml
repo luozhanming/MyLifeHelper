@@ -22,4 +22,5 @@
     <string name="login_failed">登录失败</string>
     <string name="login_loading">登录中...</string>
     <string name="auto_login">自动登录</string>
+    <string name="activity_title_oauth_page">授权页</string>
 </resources>

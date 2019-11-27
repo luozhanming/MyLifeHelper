@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseFragment
 import cn.luozhanming.github.databinding.FragmentGithubLoginBinding
@@ -15,6 +14,7 @@ import cn.luozhanming.github.repository.LoginRepository
 import cn.luozhanming.github.viewmodel.LoginViewModel
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.ext.getBaseActivity
+import com.blankj.utilcode.util.BarUtils
 
 class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
     companion object {
@@ -47,6 +47,12 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity?.apply {
+            BarUtils.setStatusBarColor(
+                this,
+                resources.getColor(R.color.colorPrimary)
+            )
+        }
         initObserver()
     }
 
