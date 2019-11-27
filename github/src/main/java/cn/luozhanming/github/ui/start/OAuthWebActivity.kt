@@ -1,5 +1,6 @@
 package cn.luozhanming.github.ui.start
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -7,10 +8,12 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
+import android.widget.ImageView
 import android.widget.ProgressBar
 import cn.luozhanming.github.R
 import cn.luozhanming.library.base.BaseActivity
 import cn.luozhanming.library.common.LoggerUtil
+import com.blankj.utilcode.util.BarUtils
 import kotlinx.android.synthetic.main.activity_oauth_web.*
 
 
@@ -22,11 +25,14 @@ class OAuthWebActivity : BaseActivity() {
 
     private lateinit var mWebView: WebView
 
-    private lateinit var mProgressBar: ProgressBar
+    private lateinit var pbProgress: ProgressBar
+
+    private lateinit var ivClose: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oauth_web)
+        BarUtils.setStatusBarColor(this,resources.getColor(R.color.colorPrimary))
         initView()
     }
 
@@ -43,8 +49,13 @@ class OAuthWebActivity : BaseActivity() {
     }
 
     override fun initView() {
-        mProgressBar = findViewById(R.id.progressBar)
+        findViewById<ImageView>(R.id.iv_close).setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        }
+        pbProgress = findViewById(R.id.progressBar)
         mWebView = findViewById(R.id.webView)
+
         initWebView()
     }
 
@@ -80,10 +91,10 @@ class OAuthWebActivity : BaseActivity() {
     private fun getChromeClient(): WebChromeClient = object : WebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             if (newProgress >= 95) {
-                mProgressBar.visibility = View.GONE
+                pbProgress.visibility = View.GONE
             } else {
-                mProgressBar.visibility = View.VISIBLE
-                mProgressBar.progress = newProgress
+                pbProgress.visibility = View.VISIBLE
+                pbProgress.progress = newProgress
             }
         }
     }

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="titlebar_height">46dp</dimen>
     <dimen name="title_text_size">20sp</dimen>
+    <dimen name="button_height_1">40dp</dimen>
+    <dimen name="button_textsize_1">20sp</dimen>
 </resources>

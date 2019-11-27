@@ -15,6 +15,7 @@ import cn.luozhanming.github.viewmodel.LoginViewModel
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.ext.getBaseActivity
 import com.blankj.utilcode.util.BarUtils
+import okhttp3.RequestBody
 
 class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
     companion object {
@@ -74,6 +75,9 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
                         Toast.LENGTH_SHORT
                     ).show()
                     getBaseActivity()?.hideLoadingDialog()
+                    view?.apply {
+                        navigationPopUpTo(this,null,R.id.action_loginFragment_to_mainActivity,true)
+                    }
                 }
                 LoginViewModel.LOGIN_LOADING -> {
                     getBaseActivity()?.showLoadingDialog(resources.getString(R.string.login_loading))

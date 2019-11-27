@@ -25,7 +25,7 @@
             tools:layout="@layout/fragment_github_login">
 
         <action
-                android:id="@+id/action_loginFragment_to_mainFragment"
+                android:id="@+id/action_loginFragment_to_mainActivity"
                 app:destination="@id/mainActivity" />
     </fragment>
     <activity
