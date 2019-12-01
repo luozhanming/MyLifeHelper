@@ -4,6 +4,7 @@ import cn.luozhanming.github.BuildConfig
 import cn.luozhanming.github.net.GithubService
 import cn.luozhanming.github.vo.UserLogin
 import cn.luozhanming.library.common.AppConfig
+import com.apollographql.apollo.ApolloClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -30,7 +31,7 @@ class GithubModule {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val request = chain.request()
                 request.newBuilder()
-                    .addHeader("Authorization", "bearer ${UserLogin.getToken()?:""}")
+                    .addHeader("Authorization", "bearer ${UserLogin.getToken() ?: ""}")
                     .build()
                 return chain.proceed(request)
             }
@@ -53,6 +54,17 @@ class GithubModule {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+
+    @GithubScope
+    @Provides
+    fun provideApolloClient(): ApolloClient {
+        val apolloClient = ApolloClient.builder()
+            .serverUrl(AppConfig.GITHUB_BASE_URL)
+            .okHttpClient(proviceOkHttpClient())
+            .build()
+        return apolloClient
+    }
 
     @GithubScope
     @Provides

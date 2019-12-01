@@ -3,7 +3,7 @@ package cn.luozhanming.github.viewmodel
 import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cn.luozhanming.github.preference.GithubPreference
+import cn.luozhanming.github.common.GithubPreference
 import cn.luozhanming.github.repository.LoginRepository
 import cn.luozhanming.github.vo.UserLogin
 import cn.luozhanming.library.common.AppConfig

@@ -1,7 +1,7 @@
 package cn.luozhanming.github.vo
 
 import android.text.TextUtils
-import cn.luozhanming.github.preference.GithubPreference
+import cn.luozhanming.github.common.GithubPreference
 import cn.luozhanming.library.common.AppConfig
 
 /**

@@ -1,4 +1,4 @@
-package cn.luozhanming.github.preference
+package cn.luozhanming.github.common
 
 import android.content.Context
 import cn.luozhanming.library.LifeHelperApp

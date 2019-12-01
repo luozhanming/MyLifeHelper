@@ -17,3 +17,8 @@ abstract class StartFragmentModule {
     abstract fun contributeWelcomeFragment():WelcomeFragment
 
 }
+
+@Module
+abstract class MainFragmentModele(){
+
+}

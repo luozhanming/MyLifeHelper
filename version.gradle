@@ -71,7 +71,10 @@ ext {
             //Lottie动画框架
             lottie                  : "com.airbnb.android:lottie:3.2.2",
             //utilCode
-            utilcode                : "com.blankj:utilcode:1.25.9"
+            utilcode                : "com.blankj:utilcode:1.25.9",
+            //apollo
+            apollo                  : "com.apollographql.apollo:apollo-runtime:1.2.1",
+            apollo_rxjava2          : "com.apollographql.apollo:apollo-rx2-support:1.2.1"
 
     ]
 }
