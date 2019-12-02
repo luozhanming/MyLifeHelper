@@ -1,5 +1,7 @@
 package cn.luozhanming.library.di
 
+import android.app.Application
+import android.content.res.Resources
 import cn.luozhanming.library.common.AppExecutor
 import dagger.Module
 import dagger.Provides
@@ -12,4 +14,7 @@ class CommonModule {
     @Singleton
     @Provides
     fun provideAppExecutor() = AppExecutor()
+
+    @Provides
+    fun provideResources(application: Application): Resources = application.resources
 }

@@ -1,6 +1,6 @@
 package cn.luozhanming.github.repository
 
-import LoginUserQuery
+import cn.luozhanming.LoginUserQuery
 import cn.luozhanming.github.di.GithubScope
 import cn.luozhanming.github.net.rxQuery
 import com.apollographql.apollo.ApolloClient
@@ -15,7 +15,7 @@ class UserRepository @Inject constructor(private val apolloClient: ApolloClient)
         val query = LoginUserQuery()
         return apolloClient.rxQuery(query)
             .map { t: Response<LoginUserQuery.Data> ->
-                t.data()?.viewer
+                t.data()?.viewer()
             }
 
     }

@@ -7,7 +7,7 @@ object AppConfig {
     const val NET_TIME_OUT = 30L
 
     /**GithubApiURL*/
-    const val GITHUB_BASE_URL = "https://api.github.com/graphql/"
+    const val GITHUB_BASE_URL = "https://api.github.com/graphql"
 
     /**应用存储文件夹*/
      val APP_EXTERN_PATH =

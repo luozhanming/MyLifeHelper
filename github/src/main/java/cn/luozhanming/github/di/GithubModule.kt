@@ -29,8 +29,8 @@ class GithubModule {
         builder.writeTimeout(AppConfig.NET_TIME_OUT, TimeUnit.SECONDS)
         builder.addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
-                val request = chain.request()
-                request.newBuilder()
+                var request = chain.request()
+                request = request.newBuilder()
                     .addHeader("Authorization", "bearer ${UserLogin.getToken() ?: ""}")
                     .build()
                 return chain.proceed(request)
@@ -50,7 +50,7 @@ class GithubModule {
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .client(proviceOkHttpClient())
-        .baseUrl(AppConfig.GITHUB_BASE_URL)
+        .baseUrl("https://www.baidu.com")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()

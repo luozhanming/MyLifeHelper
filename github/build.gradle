@@ -39,7 +39,7 @@ android {
     }
 
     apollo {
-        generateKotlinModels = true // or false
+        generateKotlinModels = false // or false
     }
 
     sourceSets {
