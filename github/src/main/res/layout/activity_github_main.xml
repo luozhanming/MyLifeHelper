@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <data>
 
-    </LinearLayout>
+        <variable
+            name="mainViewModel"
+            type="cn.luozhanming.github.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/include_main_content" />
+
+        <include
+            layout="@layout/nav_header_main"
+            bind:loginUser="@{mainViewModel.mLoginUser}" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

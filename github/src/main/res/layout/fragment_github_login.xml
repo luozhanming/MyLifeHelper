@@ -96,7 +96,7 @@
                         android:layout_marginTop="@dimen/margin_vertical"
                         android:layout_gravity="left"
                         android:textSize="18sp"
-                        android:checked="@={viewmodel.autoLogin}"
+                        android:checked="@={viewmodel.autoLogin.booleanValue()}"
                         android:textColor="@color/normal_text_color"
                         android:text="@string/auto_login"/>
 

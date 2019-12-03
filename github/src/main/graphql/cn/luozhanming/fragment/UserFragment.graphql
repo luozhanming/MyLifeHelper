@@ -1,0 +1,22 @@
+fragment UserObject on User{
+             id
+             login
+     		 name
+             avatarUrl
+             bio
+             bioHTML
+             company
+             companyHTML
+             email
+             location
+             url
+             websiteUrl
+     		 createdAt
+     		 isViewer
+            status{
+                id
+                emoji
+                message
+            }
+
+}

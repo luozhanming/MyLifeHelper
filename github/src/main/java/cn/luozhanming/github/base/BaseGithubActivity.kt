@@ -52,6 +52,7 @@ abstract class BaseGithubActivity<T : ViewDataBinding> : BaseActivity(),
             }
         },true)
         initViewModel()
+        initView()
     }
 
 

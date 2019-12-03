@@ -1,22 +1,5 @@
 query LoginUser{
 viewer{
-...LoginUserFragment
+...UserObject
 }
 }
-
-fragment LoginUserFragment on User {
-          login
-          avatarUrl
-          bio
-          bioHTML
-          company
-          companyHTML
-          email
-          location
-          url
-          websiteUrl
-          status{
-              emoji
-              message
-          }
-        }

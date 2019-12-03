@@ -26,6 +26,7 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
     }
 
     override fun initView() {
+        mBinding.mainViewModel = mViewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
