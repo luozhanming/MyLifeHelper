@@ -2,7 +2,7 @@ fragment UserObject on User{
              id
              login
      		 name
-             avatarUrl
+             avatarUrl(size:64)
              bio
              bioHTML
              company
@@ -13,6 +13,15 @@ fragment UserObject on User{
              websiteUrl
      		 createdAt
      		 isViewer
+     		  starredRepositories(first:0){
+                 totalCount
+               }
+     		  following(first:0){
+                 totalCount
+               }
+              followers(first:0){
+                 totalCount
+               }
             status{
                 id
                 emoji

@@ -36,13 +36,30 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(),Injectable {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        mBinding.lifecycleOwner = this
         return mBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initViewModel()
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+        initView()
+        initObserver()
+    }
+
+    /**
+     * 初始化ViewModel的观察者
+     * */
+    abstract fun initObserver()
+
+    /**
+     * 初始化界面控件
+     * */
+    abstract fun initView()
 
     /**
      * Navigation 的页面跳转

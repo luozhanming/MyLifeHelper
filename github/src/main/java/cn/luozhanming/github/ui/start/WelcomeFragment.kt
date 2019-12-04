@@ -14,6 +14,7 @@ import cn.luozhanming.library.ext.setFullScreen
 class WelcomeFragment : BaseFragment<FragmentGithubWelcomeBinding>(), Injectable {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //已有token就去
@@ -49,5 +50,11 @@ class WelcomeFragment : BaseFragment<FragmentGithubWelcomeBinding>(), Injectable
 
     override fun initViewModel() {
 
+    }
+
+    override fun initObserver() {
+    }
+
+    override fun initView() {
     }
 }

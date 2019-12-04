@@ -23,4 +23,15 @@
     <string name="login_loading">登录中...</string>
     <string name="auto_login">自动登录</string>
     <string name="activity_title_oauth_page">授权页</string>
+
+
+
+    <!--个人信息栏文案-->
+    <string name="format_email">邮箱：%s</string>
+    <string name="format_username">用户名：%s</string>
+    <string name="my_emoji">我的心情</string>
+    <string name="set_status">去设置心情</string>
+    <string name="like_star">喜欢</string>
+    <string name="fans">粉丝</string>
+    <string name="concern">关注</string>
 </resources>

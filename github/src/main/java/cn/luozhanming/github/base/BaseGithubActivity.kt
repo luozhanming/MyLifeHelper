@@ -40,6 +40,7 @@ abstract class BaseGithubActivity<T : ViewDataBinding> : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, getLayoutId())
+        mBinding.lifecycleOwner = this
         daggerInject()
         supportFragmentManager.registerFragmentLifecycleCallbacks(object :
             FragmentManager.FragmentLifecycleCallbacks() {

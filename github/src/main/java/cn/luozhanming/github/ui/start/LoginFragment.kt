@@ -15,9 +15,10 @@ import cn.luozhanming.github.viewmodel.LoginViewModel
 import cn.luozhanming.library.common.autoCleared
 import cn.luozhanming.library.ext.getBaseActivity
 import com.blankj.utilcode.util.BarUtils
-import okhttp3.RequestBody
 
 class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
+
+
     companion object {
         const val REQUEST_CODE_OAUTH = 1001
         const val EXTRA_CODE = "code"
@@ -30,11 +31,11 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
 
     override fun initViewModel() {
         mViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+        mBinding.viewmodel = mViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.viewmodel = mViewModel
         mBinding.btnLogin.setOnClickListener {
             val intent = Intent(activity, OAuthWebActivity::class.java)
             val url = LoginRepository.generateLoginOAuthUrl(
@@ -54,7 +55,10 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
                 resources.getColor(R.color.colorPrimary)
             )
         }
-        initObserver()
+    }
+
+    override fun initView() {
+
     }
 
 
@@ -65,7 +69,7 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun initObserver() {
+    override fun initObserver() {
         mViewModel.loginState.observe(this, Observer {
             when (it) {
                 LoginViewModel.LOGIN_SUCCESS -> {
@@ -76,7 +80,12 @@ class LoginFragment : BaseFragment<FragmentGithubLoginBinding>() {
                     ).show()
                     getBaseActivity()?.hideLoadingDialog()
                     view?.apply {
-                        navigationPopUpTo(this,null,R.id.action_loginFragment_to_mainActivity,true)
+                        navigationPopUpTo(
+                            this,
+                            null,
+                            R.id.action_loginFragment_to_mainActivity,
+                            true
+                        )
                     }
                 }
                 LoginViewModel.LOGIN_LOADING -> {

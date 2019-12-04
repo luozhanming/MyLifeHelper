@@ -4,10 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
                 name="viewmodel"
                 type="cn.luozhanming.github.viewmodel.LoginViewModel" />
+
+        <import type="cn.luozhanming.github.databinding.Converter"/>
     </data>
 
 
@@ -96,7 +97,7 @@
                         android:layout_marginTop="@dimen/margin_vertical"
                         android:layout_gravity="left"
                         android:textSize="18sp"
-                        android:checked="@={viewmodel.autoLogin.booleanValue()}"
+                        android:checked="@={Converter.unboxBoolean(viewmodel.autoLogin)}"
                         android:textColor="@color/normal_text_color"
                         android:text="@string/auto_login"/>
 
@@ -116,9 +117,6 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
