@@ -31,7 +31,7 @@ class GithubModule {
             override fun intercept(chain: Interceptor.Chain): Response {
                 var request = chain.request()
                 request = request.newBuilder()
-                    .addHeader("Authorization", "bearer ${UserLogin.getToken() ?: ""}")
+                    .addHeader("Authorization", "token ${UserLogin.getToken() ?: ""}")
                     .build()
                 return chain.proceed(request)
             }
@@ -50,7 +50,7 @@ class GithubModule {
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .client(proviceOkHttpClient())
-        .baseUrl("https://www.baidu.com")
+        .baseUrl(AppConfig.GITHUB_API_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -60,7 +60,7 @@ class GithubModule {
     @Provides
     fun provideApolloClient(): ApolloClient {
         val apolloClient = ApolloClient.builder()
-            .serverUrl(AppConfig.GITHUB_BASE_URL)
+            .serverUrl(AppConfig.GITHUB_BASE_QL_URL)
             .okHttpClient(proviceOkHttpClient())
             .build()
         return apolloClient
@@ -69,4 +69,6 @@ class GithubModule {
     @GithubScope
     @Provides
     fun provideGithubService() = provideRetrofit().create(GithubService::class.java)
+
+
 }

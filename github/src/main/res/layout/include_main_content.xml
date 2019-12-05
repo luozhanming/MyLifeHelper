@@ -10,7 +10,7 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -46,6 +46,25 @@
 
         </FrameLayout>
 
-    </LinearLayout>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/titlebar_height">
+
+        </FrameLayout>
+
+       <com.ashokvarma.bottomnavigation.BottomNavigationBar
+           android:id="@+id/my_bnb"
+           android:layout_width="match_parent"
+           app:bnbBackgroundStyle="background_style_static"
+           android:layout_height="wrap_content"
+           android:layout_gravity="bottom"
+           app:bnbActiveColor="@color/bnb_active_color"
+           app:bnbInactiveColor="@color/bnb_inactivie_color"
+           app:bnbBackgroundColor="@color/white"/>
+
+
+    </FrameLayout>
 
 </layout>

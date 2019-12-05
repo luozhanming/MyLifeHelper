@@ -2,10 +2,7 @@ package cn.luozhanming.github.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import cn.luozhanming.github.viewmodel.GithubViewModelFactory
-import cn.luozhanming.github.viewmodel.LoginViewModel
-import cn.luozhanming.github.viewmodel.MainViewModel
-import cn.luozhanming.github.viewmodel.TestViewModel
+import cn.luozhanming.github.viewmodel.*
 import cn.luozhanming.library.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
@@ -23,6 +20,11 @@ abstract class GithubViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(viewModel: MainViewModel):ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MyActivityViewModel::class)
+    abstract fun bindMyActivityViewModel(viewModel: MyActivityViewModel):ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: GithubViewModelFactory): ViewModelProvider.Factory

@@ -34,4 +34,8 @@
     <string name="like_star">喜欢</string>
     <string name="fans">粉丝</string>
     <string name="concern">关注</string>
+
+    <string name="my_activity">动态</string>
+    <string name="my_recommand">推荐</string>
+    <string name="my_repository">仓库</string>
 </resources>

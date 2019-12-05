@@ -10,6 +10,7 @@ import cn.luozhanming.github.base.BaseGithubActivity
 import cn.luozhanming.github.databinding.ActivityGithubMainBinding
 import cn.luozhanming.github.viewmodel.MainViewModel
 import cn.luozhanming.library.common.autoCleared
+import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.blankj.utilcode.util.BarUtils
 import kotlinx.android.synthetic.main.activity_github_main.*
 import kotlinx.android.synthetic.main.include_main_content.*
@@ -38,6 +39,14 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
+        initBnb()
+    }
+
+    private fun initBnb() {
+        my_bnb.addItem(BottomNavigationItem(R.mipmap.ic_activity,getString(R.string.my_activity)))
+            .addItem(BottomNavigationItem(R.mipmap.ic_repository,getString(R.string.my_repository)))
+            .addItem(BottomNavigationItem(R.mipmap.ic_recommand,getString(R.string.my_recommand)))
+            .initialise()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

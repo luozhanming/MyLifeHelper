@@ -17,11 +17,11 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/nav_header_main"
+            layout="@layout/include_main_content"
             bind:loginUser="@{mainViewModel.mLoginUser}" />
 
         <include
-            layout="@layout/include_main_content"
+            layout="@layout/nav_header_main"
             bind:loginUser="@{mainViewModel.mLoginUser}" />
 
     </androidx.drawerlayout.widget.DrawerLayout>

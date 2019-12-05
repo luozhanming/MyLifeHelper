@@ -74,7 +74,11 @@ ext {
             utilcode                : "com.blankj:utilcode:1.25.9",
             //apollo
             apollo                  : "com.apollographql.apollo:apollo-runtime:1.2.1",
-            apollo_rxjava2          : "com.apollographql.apollo:apollo-rx2-support:1.2.1"
+            apollo_rxjava2          : "com.apollographql.apollo:apollo-rx2-support:1.2.1",
+            //底部导航栏
+            bottom_navigation_view  : "com.ashokvarma.android:bottom-navigation-bar:2.1.0",
+            //刷新控件框架
+            smartrefreshlayout      : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0"
 
     ]
 }
