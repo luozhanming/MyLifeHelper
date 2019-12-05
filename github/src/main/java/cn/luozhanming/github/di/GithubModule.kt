@@ -14,7 +14,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 
 @Module
@@ -48,8 +51,8 @@ class GithubModule {
 
     @GithubScope
     @Provides
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .client(proviceOkHttpClient())
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .client(okHttpClient)
         .baseUrl(AppConfig.GITHUB_API_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
@@ -58,17 +61,22 @@ class GithubModule {
 
     @GithubScope
     @Provides
-    fun provideApolloClient(): ApolloClient {
+    fun provideApolloClient(okHttpClient: OkHttpClient): ApolloClient {
         val apolloClient = ApolloClient.builder()
             .serverUrl(AppConfig.GITHUB_BASE_QL_URL)
-            .okHttpClient(proviceOkHttpClient())
+            .okHttpClient(okHttpClient)
             .build()
         return apolloClient
     }
 
     @GithubScope
     @Provides
-    fun provideGithubService() = provideRetrofit().create(GithubService::class.java)
+    fun provideGithubService(retrofit: Retrofit) = retrofit.create(GithubService::class.java)
 
-
+    /**
+     * 提供ISO8601时间格式
+     * */
+    @GithubScope
+    @Provides
+    fun provicdeISO8601DateFormat(): DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 }

@@ -21,11 +21,6 @@ class CommonModule {
     fun provideResources(application: Application): Resources = application.resources
 
 
-    /**
-     * 提供ISO8601时间格式
-     * */
-    @Singleton
-    @Provides
-    fun provicdeISO8601DateFormat(): DateFormat = SimpleDateFormat("yyyy-MM-ddThh:mm:ssZ")
+
 
 }

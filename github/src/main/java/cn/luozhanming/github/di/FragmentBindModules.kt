@@ -1,5 +1,6 @@
 package cn.luozhanming.github.di
 
+import cn.luozhanming.github.ui.main.MyActivityFragment
 import cn.luozhanming.github.ui.start.LoginFragment
 import cn.luozhanming.github.ui.start.WelcomeFragment
 import dagger.Module
@@ -20,5 +21,7 @@ abstract class StartFragmentModule {
 
 @Module
 abstract class MainFragmentModele(){
+    @ContributesAndroidInjector
+    abstract fun contributeMyActivityFragment():MyActivityFragment
 
 }

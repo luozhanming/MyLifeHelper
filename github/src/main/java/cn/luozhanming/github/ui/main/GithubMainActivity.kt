@@ -10,6 +10,7 @@ import cn.luozhanming.github.base.BaseGithubActivity
 import cn.luozhanming.github.databinding.ActivityGithubMainBinding
 import cn.luozhanming.github.viewmodel.MainViewModel
 import cn.luozhanming.library.common.autoCleared
+import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.blankj.utilcode.util.BarUtils
 import kotlinx.android.synthetic.main.activity_github_main.*
@@ -47,6 +48,11 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
             .addItem(BottomNavigationItem(R.mipmap.ic_repository,getString(R.string.my_repository)))
             .addItem(BottomNavigationItem(R.mipmap.ic_recommand,getString(R.string.my_recommand)))
             .initialise()
+        my_bnb.setTabSelectedListener(object :BottomNavigationBar.SimpleOnTabSelectedListener(){
+            override fun onTabSelected(position: Int) {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,MyActivityFragment()).commit()
+            }
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

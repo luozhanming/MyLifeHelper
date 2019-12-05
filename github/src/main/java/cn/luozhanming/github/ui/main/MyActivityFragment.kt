@@ -16,6 +16,7 @@ class MyActivityFragment : BaseFragment<FragmentMyActivityBinding>() {
 
     override fun initViewModel() {
         mViewModel = ViewModelProviders.of(this,viewModelFactory).get(MyActivityViewModel::class.java)
+        mViewModel.loadNotifications()
     }
 
     override fun initObserver() {

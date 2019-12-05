@@ -9,7 +9,7 @@ import dagger.android.AndroidInjectionModule
 @GithubScope
 @Component(
     modules = [GithubModule::class, GithubViewModelModule::class, AndroidInjectionModule::class
-        , StartFragmentModule::class],
+        , StartFragmentModule::class,MainFragmentModele::class],
     dependencies = [CommonComponent::class]
 )
 interface GithubComponent {
