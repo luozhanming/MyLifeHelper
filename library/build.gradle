@@ -56,6 +56,7 @@ dependencies {
     api deps.utilcode
     api deps.bottom_navigation_view
     implementation deps.logger
+    api deps.smartrefreshlayout
     testApi 'junit:junit:4.12'
     kapt deps.dagger_compiler
     kapt deps.dagger_android_compiler

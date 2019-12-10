@@ -1,8 +1,6 @@
 package cn.luozhanming.github.ui.main
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
 import cn.luozhanming.github.R
@@ -12,13 +10,25 @@ import cn.luozhanming.github.viewmodel.MainViewModel
 import cn.luozhanming.library.common.autoCleared
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.blankj.utilcode.util.BarUtils
 import kotlinx.android.synthetic.main.activity_github_main.*
 import kotlinx.android.synthetic.main.include_main_content.*
 
 
 class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
 
+    companion object {
+        const val TREND = 0
+        const val MY_REOPOSITORY = 1
+        const val MY_RECOMMEND = 2
+    }
+    /**当前Fragment*/
+    private var mCurFragment = TREND
+
+    private val mDynamicInfoFragment: DynamicInfoFragment by lazy {
+        val fragment = DynamicInfoFragment()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment)
+        fragment
+    }
 
     private var mViewModel: MainViewModel by autoCleared()
 
@@ -36,7 +46,7 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
 
     override fun initView() {
         ll_drawer.setOnClickListener {
-            if(!drawerLayout.isDrawerOpen(GravityCompat.START)){
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
@@ -44,15 +54,28 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
     }
 
     private fun initBnb() {
-        my_bnb.addItem(BottomNavigationItem(R.mipmap.ic_activity,getString(R.string.my_activity)))
-            .addItem(BottomNavigationItem(R.mipmap.ic_repository,getString(R.string.my_repository)))
-            .addItem(BottomNavigationItem(R.mipmap.ic_recommand,getString(R.string.my_recommand)))
+        my_bnb.addItem(BottomNavigationItem(R.mipmap.ic_activity, getString(R.string.my_activity)))
+            .addItem(
+                BottomNavigationItem(
+                    R.mipmap.ic_repository,
+                    getString(R.string.my_repository)
+                )
+            )
+            .addItem(BottomNavigationItem(R.mipmap.ic_recommand, getString(R.string.my_recommand)))
             .initialise()
-        my_bnb.setTabSelectedListener(object :BottomNavigationBar.SimpleOnTabSelectedListener(){
+        my_bnb.setTabSelectedListener(object : BottomNavigationBar.SimpleOnTabSelectedListener() {
             override fun onTabSelected(position: Int) {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,MyActivityFragment()).commit()
+                showFragment(position)
             }
         })
+    }
+
+    private fun showFragment(position: Int) {
+        if (mCurFragment == position) return
+        mCurFragment = position
+        when (position) {
+            TREND -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,mDynamicInfoFragment).commit()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

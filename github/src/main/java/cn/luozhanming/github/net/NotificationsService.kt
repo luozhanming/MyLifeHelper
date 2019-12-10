@@ -16,8 +16,8 @@ interface NotificationsService {
     @GET("/notifications")
     fun loadNotifications(
         @Query("all") all: Boolean = true,
-//        @Query("since") since: String,
-//        @Query("before") before: String,
+        @Query("since") since: String,
+        @Query("before") before: String,
         @Query("participating") participating: Boolean = false
     ): Observable<ResponseBody>
 

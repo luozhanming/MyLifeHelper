@@ -1,9 +1,8 @@
 package cn.luozhanming.github.repository
 
-import android.util.Base64
 import cn.luozhanming.github.BuildConfig
 import cn.luozhanming.github.di.GithubScope
-import cn.luozhanming.github.net.GithubService
+import cn.luozhanming.github.net.UserService
 import cn.luozhanming.github.vo.AccessToken
 import cn.luozhanming.library.common.AppExecutor
 import io.reactivex.Observable
@@ -13,7 +12,7 @@ import javax.inject.Inject
 @GithubScope
 class LoginRepository @Inject constructor(
     private val appExecutor: AppExecutor,
-    private val api: GithubService
+    private val api: UserService
 ) {
 
     var tokenStorage: AccessToken? = null
@@ -43,7 +42,7 @@ class LoginRepository @Inject constructor(
      * 获取accessToken
      * */
     fun getAccessToken(code: String): Observable<AccessToken> {
-        return api.loadAccessToken(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET, code)
+        return api.getAccessToken(BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET, code)
             .map { body ->
                 val it = body.string()
                 val split = it.split("&")

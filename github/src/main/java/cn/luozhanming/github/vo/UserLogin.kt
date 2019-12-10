@@ -9,6 +9,7 @@ import cn.luozhanming.library.common.AppConfig
  * */
 object UserLogin {
 
+    private var userName: String? by GithubPreference(AppConfig.PREF_USERNAME, "")
     private var accessToken: String? by GithubPreference(AppConfig.PREF_TOKEN, "")
 
 
@@ -23,5 +24,12 @@ object UserLogin {
     fun isLogin() = !TextUtils.isEmpty(accessToken)
 
     fun getToken() = accessToken
+
+    fun getUsername() = userName
+
+    fun setUsername(name: String?) {
+        userName = name?:""
+    }
+
 
 }

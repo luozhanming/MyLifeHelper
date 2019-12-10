@@ -7,15 +7,16 @@ import cn.luozhanming.github.databinding.FragmentMyActivityBinding
 import cn.luozhanming.github.viewmodel.MyActivityViewModel
 import cn.luozhanming.library.common.autoCleared
 
-class MyActivityFragment : BaseFragment<FragmentMyActivityBinding>() {
+class DynamicInfoFragment : BaseFragment<FragmentMyActivityBinding>() {
 
-    private var mViewModel:MyActivityViewModel by autoCleared()
+    private var mViewModel: MyActivityViewModel by autoCleared()
 
 
     override fun getLayoutId(): Int = R.layout.fragment_my_activity
 
     override fun initViewModel() {
-        mViewModel = ViewModelProviders.of(this,viewModelFactory).get(MyActivityViewModel::class.java)
+        mViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(MyActivityViewModel::class.java)
         mViewModel.loadNotifications()
     }
 
@@ -24,6 +25,5 @@ class MyActivityFragment : BaseFragment<FragmentMyActivityBinding>() {
     }
 
     override fun initView() {
-
     }
 }

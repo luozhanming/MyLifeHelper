@@ -18,6 +18,8 @@ object AppConfig {
     /**应用界面设计宽度基准，单位dp*/
     const val DESIGN_WIDTH_BASE = 360
 
+    const val PER_PAGE = 10
+
 
 
 

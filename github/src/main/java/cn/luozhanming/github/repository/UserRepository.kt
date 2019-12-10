@@ -3,18 +3,20 @@ package cn.luozhanming.github.repository
 import cn.luozhanming.LoginUserQuery
 import cn.luozhanming.fragment.UserObject
 import cn.luozhanming.github.di.GithubScope
-import cn.luozhanming.github.net.NotificationsService
+import cn.luozhanming.github.net.UserService
 import cn.luozhanming.github.net.rxQuery
+import cn.luozhanming.github.vo.Event
+import cn.luozhanming.github.vo.UserLogin
+import cn.luozhanming.library.common.GsonUtil
 import cn.luozhanming.library.common.checkUnexpectNetResponse
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
+import java.lang.NullPointerException
 import java.text.DateFormat
-import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @GithubScope
 class UserRepository @Inject constructor(
@@ -34,18 +36,16 @@ class UserRepository @Inject constructor(
     }
 
 
-    fun getNotifacations(): Observable<ResponseBody> {
-        return retrofit.create(NotificationsService::class.java)
-            .loadNotifications(
-                true,
-//                iso8601Format.format(Date(System.currentTimeMillis() - 3 * 24 * 60 * 60 * 1000)),
-//                iso8601Format.format(Date(System.currentTimeMillis())),
-                false
-            )
-            .map { body ->
-                val string = body.string()
-                body
-            }
+    fun getDynamicInfo(): Observable<List<Event>> {
+        return retrofit.create(UserService::class.java)
+            .getDynamicInfo(
+                UserLogin.getUsername()?:throw NullPointerException("Username cannot be null."),
+                1
+            ).doOnNext({
+                it.asSequence().filter {
+                    "WatchEvent".equals(it.type) or "ForkEvent".equals(it.type)
+                }
+            })
     }
 }
 

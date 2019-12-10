@@ -1,7 +1,7 @@
 package cn.luozhanming.github.di
 
 import cn.luozhanming.github.BuildConfig
-import cn.luozhanming.github.net.GithubService
+import cn.luozhanming.github.net.UserService
 import cn.luozhanming.github.vo.UserLogin
 import cn.luozhanming.library.common.AppConfig
 import com.apollographql.apollo.ApolloClient
@@ -17,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 
 @Module
@@ -71,7 +70,7 @@ class GithubModule {
 
     @GithubScope
     @Provides
-    fun provideGithubService(retrofit: Retrofit) = retrofit.create(GithubService::class.java)
+    fun provideGithubService(retrofit: Retrofit) = retrofit.create(UserService::class.java)
 
     /**
      * 提供ISO8601时间格式
