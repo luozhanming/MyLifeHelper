@@ -10,7 +10,7 @@ data class Repository(
     val private: Boolean,
     @SerializedName("html_url") val htmlUrl: String,
     val description: String,
-    val fork: Int,
+    val fork: Boolean,
     val language: String?,
     val url: String,
     @SerializedName("fork_url") val forkUrl: String,
