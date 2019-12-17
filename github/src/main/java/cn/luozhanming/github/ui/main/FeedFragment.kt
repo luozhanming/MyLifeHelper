@@ -4,29 +4,29 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseFragment
-import cn.luozhanming.github.databinding.FragmentMyActivityBinding
-import cn.luozhanming.github.viewmodel.MyActivityViewModel
+import cn.luozhanming.github.databinding.FragmentFeedBinding
+import cn.luozhanming.github.viewmodel.FeedViewModel
 import cn.luozhanming.github.viewmodel.PageViewModelInterface
 import cn.luozhanming.library.common.autoCleared
-import kotlinx.android.synthetic.main.fragment_my_activity.*
+import kotlinx.android.synthetic.main.fragment_feed.*
 
-class DynamicInfoFragment : BaseFragment<FragmentMyActivityBinding>() {
+class FeedFragment : BaseFragment<FragmentFeedBinding>() {
 
-    private var mViewModel: MyActivityViewModel by autoCleared()
+    private var mViewModel: FeedViewModel by autoCleared()
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_my_activity
+    override fun getLayoutId(): Int = R.layout.fragment_feed
 
     override fun initViewModel() {
         mViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(MyActivityViewModel::class.java)
+            ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
         mViewModel.loadNotifications()
     }
 
     override fun initObserver() {
         mViewModel.mCurPageDatas.observe(this, Observer {
             if(it.isEmpty()){
-                refresh_layout
+           //     refresh_layout
             }
         })
         mViewModel.state.observe(this, Observer {

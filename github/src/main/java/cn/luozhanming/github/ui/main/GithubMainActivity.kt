@@ -17,15 +17,15 @@ import kotlinx.android.synthetic.main.include_main_content.*
 class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
 
     companion object {
-        const val TREND = 0
+        const val NAV_FEED = 0
         const val MY_REOPOSITORY = 1
         const val MY_RECOMMEND = 2
     }
     /**当前Fragment*/
-    private var mCurFragment = TREND
+    private var mCurFragment = NAV_FEED
 
-    private val mDynamicInfoFragment: DynamicInfoFragment by lazy {
-        val fragment = DynamicInfoFragment()
+    private val mFeedFragment: FeedFragment by lazy {
+        val fragment = FeedFragment()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment)
         fragment
     }
@@ -68,13 +68,14 @@ class GithubMainActivity : BaseGithubActivity<ActivityGithubMainBinding>() {
                 showFragment(position)
             }
         })
+        my_bnb.selectTab(NAV_FEED)
     }
 
     private fun showFragment(position: Int) {
         if (mCurFragment == position) return
         mCurFragment = position
         when (position) {
-            TREND -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,mDynamicInfoFragment).commit()
+            NAV_FEED -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,mFeedFragment).commit()
         }
     }
 

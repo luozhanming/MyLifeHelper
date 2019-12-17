@@ -12,6 +12,7 @@ object DateUtil {
     /**
      * 计算时间与现在的时长
      * */
+    @JvmStatic
     fun computeDateFromNow(dateStr: String): String {
         val date = dateFormat1.parse(dateStr)
         val nowDate = Date()

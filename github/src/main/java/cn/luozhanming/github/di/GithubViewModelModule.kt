@@ -23,8 +23,8 @@ abstract class GithubViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MyActivityViewModel::class)
-    abstract fun bindMyActivityViewModel(viewModel: MyActivityViewModel):ViewModel
+    @ViewModelKey(FeedViewModel::class)
+    abstract fun bindMyActivityViewModel(viewModel: FeedViewModel):ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: GithubViewModelFactory): ViewModelProvider.Factory
