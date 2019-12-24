@@ -11,9 +11,7 @@ import java.io.PrintWriter
  * Log工具类
  * */
 object LoggerUtil {
-
-
-    fun init() {
+    init {
         Logger.addLogAdapter(object : AndroidLogAdapter() {
             override fun isLoggable(priority: Int, tag: String?): Boolean {
                 return BuildConfig.DEBUG

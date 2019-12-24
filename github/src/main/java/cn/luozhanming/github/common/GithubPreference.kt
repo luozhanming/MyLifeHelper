@@ -37,8 +37,6 @@ class GithubPreference<T>(private val keyName: String, private val default: T) {
             }
             return res as T
         }
-
-
     }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {

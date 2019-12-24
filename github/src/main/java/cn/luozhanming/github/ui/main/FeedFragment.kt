@@ -20,7 +20,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
     override fun initViewModel() {
         mViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
-        mViewModel.loadNotifications()
+        mViewModel.loadFeeds()
     }
 
     override fun initObserver() {

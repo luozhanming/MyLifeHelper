@@ -7,40 +7,28 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import kotlin.reflect.KProperty
 
-class ActivityAutoClearedValue<T : Any>(activity: AppCompatActivity) {
+class AutoClearedValue<T : Any> {
     private var _value: T? = null
 
-    init {
-        activity.lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            fun onDestroy() {
-                _value = null
-            }
-        })
-    }
 
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return _value ?: throw IllegalStateException(
-            "should never call auto-cleared-value get when it might not be available"
-        )
-    }
-
-    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        _value = value
-    }
-}
-
-class FragmentAutoClearedValue<T : Any>(fragment: Fragment) {
-    private var _value: T? = null
-
-    init {
+    constructor(fragment: Fragment) {
         fragment.lifecycle.addObserver(object : LifecycleObserver {
             @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
             fun onDestroy() {
-                _value = null
+
             }
         })
     }
+
+    constructor(activity: AppCompatActivity) {
+        activity.lifecycle.addObserver(object : LifecycleObserver {
+            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+            fun onDestroy() {
+
+            }
+        })
+    }
+
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return _value ?: throw IllegalStateException(
@@ -53,6 +41,7 @@ class FragmentAutoClearedValue<T : Any>(fragment: Fragment) {
     }
 }
 
-fun <T : Any> AppCompatActivity.autoCleared() = ActivityAutoClearedValue<T>(this)
-fun <T : Any> Fragment.autoCleared() = FragmentAutoClearedValue<T>(this)
+
+fun <T : Any> AppCompatActivity.autoCleared() = AutoClearedValue<T>(this)
+fun <T : Any> Fragment.autoCleared() = AutoClearedValue<T>(this)
 
