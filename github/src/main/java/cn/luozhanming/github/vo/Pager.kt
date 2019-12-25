@@ -4,7 +4,7 @@ import androidx.annotation.IntDef
 
 data class Pager<T>(val curPage: Int = 0, @PageState val pageState: Int, val datas: List<T>?)
 
-fun <T> getEmptyPage(clazz: Class<T>) = Pager<T>(0, 0, null)
+fun <T> getEmptyPage(clazz: Class<T>) = Pager<T>(0, PAGE_STATE_NEVER, null)
 
 /*从未加载过*/
 const val PAGE_STATE_NEVER = 2001

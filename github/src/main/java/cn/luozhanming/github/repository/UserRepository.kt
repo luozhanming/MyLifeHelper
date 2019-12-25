@@ -5,8 +5,7 @@ import cn.luozhanming.fragment.UserObject
 import cn.luozhanming.github.di.GithubScope
 import cn.luozhanming.github.net.UserService
 import cn.luozhanming.github.net.rxQuery
-import cn.luozhanming.github.vo.Event
-import cn.luozhanming.github.vo.UserLogin
+import cn.luozhanming.github.vo.*
 import cn.luozhanming.library.common.checkUnexpectNetResponse
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
@@ -38,7 +37,7 @@ class UserRepository @Inject constructor(
     /**
      * 获取当前用户动态接收信息
      * */
-    fun getDynamicInfo(page: Int): Observable<List<Event>> {
+    fun getDynamicInfo(page: Int): Observable<Pager<Event>> {
         return retrofit.create(UserService::class.java)
             .getDynamicInfo(
                 UserLogin.getUsername() ?: throw NullPointerException("Username cannot be null."),
@@ -47,6 +46,12 @@ class UserRepository @Inject constructor(
                 checkUnexpectNetResponse(it)
                 it.asSequence().filter {
                     "WatchEvent".equals(it.type) or "ForkEvent".equals(it.type)
+                }
+            }.map {
+                if (!it.isEmpty()) {//不为空就是加载成功
+                    return@map Pager(page, PAGE_STATE_SUCCESS, it)
+                } else {   //为空就是加载失败或者没有更多
+                    return@map Pager(page, PAGE_STATE_NO_MORE, it)
                 }
             }
     }

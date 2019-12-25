@@ -6,9 +6,11 @@ import cn.luozhanming.github.R
 import cn.luozhanming.github.base.BaseFragment
 import cn.luozhanming.github.databinding.FragmentFeedBinding
 import cn.luozhanming.github.viewmodel.FeedViewModel
-import cn.luozhanming.github.viewmodel.PageViewModelInterface
+import cn.luozhanming.github.vo.PAGE_STATE_FAILED
+import cn.luozhanming.github.vo.PAGE_STATE_NEVER
+import cn.luozhanming.github.vo.PAGE_STATE_NO_MORE
+import cn.luozhanming.github.vo.PAGE_STATE_SUCCESS
 import cn.luozhanming.library.common.autoCleared
-import kotlinx.android.synthetic.main.fragment_feed.*
 
 class FeedFragment : BaseFragment<FragmentFeedBinding>() {
 
@@ -24,28 +26,37 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
     }
 
     override fun initObserver() {
-        mViewModel.mCurPageDatas.observe(this, Observer {
-            if(it.isEmpty()){
-           //     refresh_layout
-            }
-        })
-        mViewModel.state.observe(this, Observer {
-            when(it){
-                PageViewModelInterface.STATE_HASDATA->{
-                    refresh_layout.finishRefresh(true)
+        mViewModel.mPagerData.observe(this, Observer {
+            when (it.pageState) {
+                PAGE_STATE_NEVER ->
+                    mBinding.refreshLayout.autoRefresh()
+                PAGE_STATE_SUCCESS -> {
+                    if (it.curPage == 1) {  //刷新
+                        mBinding.refreshLayout.finishRefresh()
+                    } else {  //加载
+                        mBinding.refreshLayout.finishLoadMore()
+                    }
+                    //更新adapter
                 }
-                PageViewModelInterface.STATE_ERROR->{
-                    refresh_layout.finishRefresh(false)
+                PAGE_STATE_FAILED -> {
+                    if (it.curPage == 1) {
+                        mBinding.refreshLayout.finishRefresh(false)
+                    } else {
+                        mBinding.refreshLayout.finishLoadMore(false)
+                    }
                 }
-                PageViewModelInterface.STATE_NOMOREDATA->{
-                    if(mViewModel.mCurPage.value!!>0){
-                        refresh_layout.finishLoadMoreWithNoMoreData()
-                    }else{
-                        refresh_layout.finishRefreshWithNoMoreData()
+                PAGE_STATE_NO_MORE -> {
+                    if (it.curPage == 1) {
+                        mBinding.refreshLayout.finishRefresh(false)
+                        mBinding.refreshLayout.setNoMoreData(false)
+                    } else {
+                        mBinding.refreshLayout.finishLoadMore(false)
+                        mBinding.refreshLayout.setNoMoreData(false)
                     }
                 }
             }
         })
+
     }
 
     override fun initView() {
