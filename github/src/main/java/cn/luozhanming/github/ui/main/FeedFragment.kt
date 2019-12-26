@@ -11,6 +11,8 @@ import cn.luozhanming.github.vo.PAGE_STATE_NEVER
 import cn.luozhanming.github.vo.PAGE_STATE_NO_MORE
 import cn.luozhanming.github.vo.PAGE_STATE_SUCCESS
 import cn.luozhanming.library.common.autoCleared
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 
 class FeedFragment : BaseFragment<FragmentFeedBinding>() {
 
@@ -22,7 +24,6 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
     override fun initViewModel() {
         mViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
-        mViewModel.loadFeeds()
     }
 
     override fun initObserver() {
@@ -60,5 +61,14 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
     }
 
     override fun initView() {
+        mBinding.refreshLayout.setOnMultiPurposeListener(object :SimpleMultiPurposeListener(){
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                mViewModel.loadFeeds(true)
+            }
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+               mViewModel.loadFeeds(false)
+            }
+        })
     }
 }

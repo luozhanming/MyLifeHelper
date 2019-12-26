@@ -22,8 +22,8 @@ class FeedViewModel @Inject constructor(private val userRepository: UserReposito
     }
 
 
-    fun loadFeeds() {
-        userRepository.getDynamicInfo(mPagerData.value!!.curPage + 1)
+    fun loadFeeds(isLoadMore: Boolean) {
+        userRepository.getDynamicInfo(if (isLoadMore) mPagerData.value!!.curPage + 1 else 1)
             .subscribeOn(Schedulers.io())
             .subscribe(Consumer {
                 mPagerData.postValue(it)

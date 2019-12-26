@@ -18,7 +18,6 @@ class LifeHelperApp : Application() {
         super.onCreate()
         instance = this
         mCommonComponent = DaggerCommonComponent.builder().application(this).build()
-        LoggerUtil.init()
     }
 
     fun getCommonComponent() = mCommonComponent
