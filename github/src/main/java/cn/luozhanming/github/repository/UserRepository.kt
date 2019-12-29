@@ -5,6 +5,7 @@ import cn.luozhanming.fragment.UserObject
 import cn.luozhanming.github.di.GithubScope
 import cn.luozhanming.github.net.UserService
 import cn.luozhanming.github.net.rxQuery
+import cn.luozhanming.github.util.EventUtil
 import cn.luozhanming.github.vo.*
 import cn.luozhanming.library.common.checkUnexpectNetResponse
 import com.apollographql.apollo.ApolloClient
@@ -45,7 +46,8 @@ class UserRepository @Inject constructor(
             ).doOnNext {
                 checkUnexpectNetResponse(it)
                 it.asSequence().filter {
-                    "WatchEvent".equals(it.type) or "ForkEvent".equals(it.type)
+                    EventUtil.TYPE_WATCH.equals(it.type) or EventUtil.TYPE_FORK.equals(it.type) or
+                            EventUtil.TYPE_ISSUES.equals(it.type) or EventUtil.TYPE_PUSH.equals(it.type)
                 }
             }.map {
                 if (!it.isEmpty()) {//不为空就是加载成功

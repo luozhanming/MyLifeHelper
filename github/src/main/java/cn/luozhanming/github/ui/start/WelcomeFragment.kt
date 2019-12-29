@@ -37,7 +37,7 @@ class WelcomeFragment : BaseFragment<FragmentGithubWelcomeBinding>(), Injectable
                     )
                 }
             }
-        }, 3000)
+        }, 1000)
 
     }
 

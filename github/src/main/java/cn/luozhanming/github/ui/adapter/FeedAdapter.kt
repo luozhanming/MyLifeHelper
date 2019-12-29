@@ -1,53 +1,50 @@
 package cn.luozhanming.github.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import cn.luozhanming.github.R
 import cn.luozhanming.github.databinding.ItemReceiveEventBinding
 import cn.luozhanming.github.vo.Event
 
-class FeedAdapter : PagedListAdapter<Event, FeedAdapter.ViewHolder>(DIFF_CALLBACK) {
-
-
-    companion object {
-        private val DIFF_CALLBACK = object :
-            DiffUtil.ItemCallback<Event>() {
-            // Concert details may have changed if reloaded from the database,
-            // but ID is fixed.
-            override fun areItemsTheSame(
-                oldEvent: Event,
-                newEvent: Event
-            ) = oldEvent.id == newEvent.id
-
-            override fun areContentsTheSame(
-                oldEvent: Event,
-                newEvent: Event
-            ) = oldEvent == newEvent
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+class FeedAdapter(private val mDatas: MutableList<Event>) :
+    RecyclerView.Adapter<GenericViewHolder<ItemReceiveEventBinding>>() {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): GenericViewHolder<ItemReceiveEventBinding> {
+        val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ItemReceiveEventBinding>(
-            LayoutInflater.from(parent.context),
-            R.layout.item_receive_event, parent, false
+            inflater,
+            R.layout.item_receive_event,
+            parent,
+            false
         )
-        return ViewHolder(binding.root, binding)
-
+        return GenericViewHolder((binding))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val event = getItem(position)
-        holder.binding.event = event
-        holder.binding.executePendingBindings()
+    override fun getItemCount(): Int = mDatas.size
+
+
+    fun refreshDatas(datas:List<Event>){
+        mDatas.clear()
+        mDatas.addAll(datas)
+        notifyDataSetChanged()
     }
 
+    fun addDatas(datas: List<Event>){
+        val position = mDatas.size
+        mDatas.addAll(datas)
+        notifyItemRangeInserted(position,datas.size)
+    }
 
-    class ViewHolder(itemView: View, val binding: ItemReceiveEventBinding) :
-        RecyclerView.ViewHolder(itemView)
-
+    override fun onBindViewHolder(
+        holder: GenericViewHolder<ItemReceiveEventBinding>,
+        position: Int
+    ) {
+        val data = mDatas[position]
+        holder.mBinding.event = data
+        holder.mBinding.executePendingBindings()
+    }
 }

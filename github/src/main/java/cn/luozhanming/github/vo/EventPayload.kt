@@ -1,5 +1,5 @@
 package cn.luozhanming.github.vo
 
-class EventPayload(val action:String?,
+data class EventPayload(val action:String?,
                    val forkee:Repository?,
                    val body:String?)

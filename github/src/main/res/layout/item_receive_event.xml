@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,7 +9,9 @@
                 type="cn.luozhanming.github.vo.Event" />
 
         <import type="android.text.TextUtils" />
-        <import type="cn.luozhanming.github.util.DateUtil"/>
+
+        <import type="cn.luozhanming.github.util.DateUtil" />
+        <import type="cn.luozhanming.github.util.EventUtil"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,7 +23,7 @@
             android:orientation="vertical"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="3dp"
-            app:cardElevation="3dp">
+            app:cardElevation="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -30,8 +31,8 @@
 
             <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     app:circleCrop="@{true}"
@@ -46,7 +47,7 @@
                     android:layout_marginLeft="16dp"
                     android:text="@{TextUtils.isEmpty(event.actor.displayLogin)?event.actor.login:event.actor.displayLogin}"
                     android:textColor="@color/normal_text_color"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -57,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:text="@{DateUtil.computeDateFromNow(event.createdAt)}"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -65,11 +66,10 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="5645465"
-                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@{EventUtil.formatEventAtionText(event)}"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />
